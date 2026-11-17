@@ -1,0 +1,41 @@
+# Sistema operacional e editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Ferramentas locais e dependências
+.claude/
+node_modules/
+
+# Segredos e credenciais: nunca publicar
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+secrets*.json
+credentials*.json
+
+# Dados, dumps e logs internos
+*.dump
+*.sql
+*.sqlite
+*.db
+*.csv
+*.log
+
+# Material interno da apresentação e capturas não revisadas
+*.pptx
+*.pdf
+capturas/
+assets/screenshots/originais/
+
+# Arquivos temporários e de revisão interna
+.tmp*
+*.tmp
+REVISAO-PUBLICACAO.md
