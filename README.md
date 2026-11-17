@@ -59,8 +59,6 @@ Fui o **desenvolvedor full stack responsável pelo projeto**, do levantamento da
 | API (`api-coopersal`)      | 103 de 103               | 33                       |
 | Frontend (`web-coopersal`) | 112 de 114               | 15                       |
 
-> **Uso de IA:** usei assistentes de IA (Claude Code) como ferramenta de apoio. Parte dos commits registra essa coautoria, e os 2 commits que têm o assistente como autor ficaram fora da contagem acima. Requisitos, decisões de arquitetura e modelagem, regras de negócio, revisão, integração e implantação ficaram sob minha responsabilidade.
-
 ---
 
 ## O problema e a solução
