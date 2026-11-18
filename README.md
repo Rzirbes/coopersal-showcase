@@ -216,36 +216,6 @@ A cooperativa controlava coletas, escalas, abastecimentos e produção em planil
 
 ## Arquitetura
 
-```mermaid
-flowchart TB
-    U(["Usuário (navegador)"])
-
-    subgraph FE["Frontend · Next.js · Vercel"]
-        P["proxy.ts<br/>renova a sessão antes de renderizar"]
-        RSC["Páginas<br/>Server e Client Components"]
-        BFF["BFF<br/>Route Handlers /api/*"]
-    end
-
-    R[("Redis<br/>lock da renovação de sessão")]
-
-    subgraph BE["API · NestJS · Render"]
-        MW["Helmet · CORS · Throttler<br/>ValidationPipe · Exception Filter"]
-        G["JwtAuthGuard + RolesGuard"]
-        UC["Controllers → Casos de uso<br/>+ políticas de domínio"]
-        REPO["Interfaces de repositório<br/>implementadas com Prisma"]
-    end
-
-    DB[("PostgreSQL · Neon<br/>índices parciais · CHECKs · triggers")]
-
-    U --> P --> RSC
-    U --> BFF
-    P -.-> R
-    BFF -.-> R
-    RSC --> MW
-    BFF --> MW
-    MW --> G --> UC --> REPO --> DB
-```
-
 - **Frontend e backend independentes:** o navegador nunca chama a API diretamente. Páginas (no servidor) e BFF fazem as chamadas e repassam os cookies `HttpOnly` definidos pela API, de modo que os tokens não ficam acessíveis ao JavaScript do cliente.
 - **Camadas na API:** cada módulo tem `domain` (entidades, value objects, serviços puros e interfaces de repositório), `application` (um caso de uso por operação) e `infrastructure` (controllers, DTOs e repositórios Prisma), em uma organização inspirada em Clean Architecture.
 - **Regras em três níveis:** serviços de domínio puros, casos de uso transacionais e restrições no próprio PostgreSQL.
